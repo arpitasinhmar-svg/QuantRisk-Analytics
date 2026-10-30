@@ -1,0 +1,6 @@
+Metric,Value
+Accuracy,0.79
+ROC-AUC,0.7214912280701755
+Default Precision,0.6666666666666666
+Default Recall,0.25
+Default F1-score,0.36363636363636365
