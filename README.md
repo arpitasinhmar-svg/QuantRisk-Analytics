@@ -1,85 +1,192 @@
 # QuantRisk Analytics
+### Market Risk & Credit Risk Modelling Using Python
 
-### Financial Risk Analysis Using Python
+A quantitative finance project exploring market volatility, downside risk and credit default prediction through statistical analysis and machine learning.
 
-QuantRisk Analytics is a beginner-level financial risk analysis project exploring two key areas: market risk and credit risk. It uses statistical techniques and Python to examine financial data, measure potential losses and understand credit default behaviour.
+![Python](https://img.shields.io/badge/Python-3.14-blue?logo=python)
+![Jupyter](https://img.shields.io/badge/Environment-Jupyter-orange?logo=jupyter)
+![Status](https://img.shields.io/badge/Project-Completed-success)
+![Focus](https://img.shields.io/badge/Focus-Financial%20Risk-1f6feb)
 
-## Project Objectives
+---
 
-- Analyse movements and volatility in the Indian equity market.
-- Measure potential market losses using Value at Risk and Expected Shortfall.
-- Examine customer credit default behaviour.
-- Apply logistic regression to estimate default probability.
-- Evaluate model performance using classification metrics.
+## Project Overview
 
-## Project Modules
+QuantRisk Analytics applies quantitative and statistical techniques to two areas of financial risk:
 
-### 1. Market Risk Analysis
+- **Market Risk:** Examining NIFTY 50 daily returns, volatility and potential downside losses.
+- **Credit Risk:** Using logistic regression to study the probability of credit default.
 
-**Dataset:** NIFTY 50 daily historical data, January to June 2026.
+The project uses Python to process financial data, calculate risk measures, build a basic predictive model and interpret the results.
 
-Analysis includes:
-- Daily percentage returns
-- Descriptive statistics
-- Return distribution
+## 01. Market Risk Analysis
+
+**Objective:** Analyse NIFTY 50 market movements and estimate potential downside risk.
+
+### Methodology
+
+- Daily percentage return calculations
+- Descriptive statistical analysis
+- Return distribution visualisation
 - 20-day rolling volatility
-- ARCH LM test
-- Historical VaR at 95% and 99% confidence levels
-- Expected Shortfall
+- ARCH LM test for conditional heteroskedasticity
+- Historical Value at Risk (VaR) at 95% and 99%
+- Expected Shortfall at 95% and 99%
 
-### 2. Credit Risk Analysis
+### Visual Results
 
-**Dataset:** Default of Credit Card Clients, UCI Machine Learning Repository.
+**Daily Returns**
 
-A random sample of 500 observations was used.
+![NIFTY 50 Daily Returns](figures/nifty50_daily_returns.png)
 
-Analysis includes:
-- Customer repayment and credit information
-- Logistic regression
-- Probability of default
-- Confusion matrix
-- Accuracy, precision, recall and F1-score
-- ROC-AUC evaluation
+**Rolling Volatility**
 
-## Tools and Libraries
+![NIFTY 50 Rolling Volatility](figures/nifty50_rolling_volatility.png)
 
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Scikit-learn
-- Statsmodels
-- Jupyter Notebook
+**Historical Value at Risk**
 
-## Repository Structure
+![NIFTY 50 VaR Analysis](figures/nifty50_var_analysis.png)
+
+### Key Observation
+
+The ARCH LM test produced a p-value of approximately 0.161. At the 5% significance level, there was insufficient evidence to reject the null hypothesis of no ARCH effects in the sample.
+
+Historical VaR and Expected Shortfall provide estimates of downside risk based on the observed return distribution.
+
+## 02. Credit Risk Analysis
+
+**Objective:** Develop a basic logistic regression model to examine credit default prediction.
+
+### Dataset
+
+The analysis uses the Default of Credit Card Clients dataset from the UCI Machine Learning Repository.
+
+A random sample of 500 observations was selected for this introductory modelling exercise.
+
+### Methodology
+
+- Data cleaning and preparation
+- Selection of five explanatory variables:
+  - Credit limit
+  - Age
+  - Repayment status
+  - Previous bill amount
+  - Previous payment amount
+- 80:20 training and testing split
+- Feature standardisation
+- Logistic regression classification
+- Model evaluation using accuracy, precision, recall, F1-score and ROC-AUC
+
+### Model Performance
+
+| Evaluation Metric | Result |
+|---|---:|
+| Accuracy | 79.0% |
+| ROC-AUC | 0.721 |
+| Default Precision | 67% |
+| Default Recall | 25% |
+| Default F1-score | 36% |
+
+### Confusion Matrix
+
+![Credit Risk Confusion Matrix](figures/credit_risk_confusion_matrix.png)
+
+### ROC Curve
+
+![Credit Risk ROC Curve](figures/credit_risk_roc_curve.png)
+
+### Key Observation
+
+Although the model achieved 79% accuracy, it identified only 25% of actual defaulters in the test sample.
+
+This highlights an important issue in credit risk modelling: accuracy alone can be misleading when the cost of missing a potential defaulter is high.
+
+## 03. Tools and Technologies
+
+| Tool | Application |
+|---|---|
+| Python | Data analysis and modelling |
+| Pandas | Data manipulation |
+| NumPy | Numerical calculations |
+| Matplotlib | Data visualisation |
+| Seaborn | Statistical visualisation |
+| Scikit-learn | Logistic regression and evaluation |
+| Statsmodels | ARCH LM test |
+| Jupyter Notebook | Analysis environment |
+
+## 04. Repository Structure
 
 ```text
 QuantRisk-Analytics/
-├── data/
+│
+├── data/                   # Input datasets (not tracked)
+│
 ├── notebooks/
 │   ├── 01_market_data_analysis.ipynb
 │   └── 02_credit_risk_analysis.ipynb
-├── src/
-├── R/
+│
 ├── outputs/
-├── reports/
-├── README.md
-└── .gitignore
+│   ├── risk_summary.csv
+│   └── credit_risk_results.csv
+│
+├── figures/
+│   ├── nifty50_daily_returns.png
+│   ├── nifty50_rolling_volatility.png
+│   ├── nifty50_var_analysis.png
+│   ├── credit_risk_confusion_matrix.png
+│   └── credit_risk_roc_curve.png
+│
+├── .gitignore
+├── .gitattributes
+└── README.md
 ```
 
-## Data Sources
+## 05. Data Sources
 
-- NIFTY 50: NSE / Nifty Indices
-- Default of Credit Card Clients: UCI Machine Learning Repository
+1. **NIFTY 50 Historical Data:** NSE India / Nifty Indices.
+2. **Default of Credit Card Clients:** [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/350/default+of+credit+card+clients).
 
-## Limitations
+Raw datasets are excluded from this repository. Obtain the datasets from their respective sources and place them inside the `data/` folder before running the notebooks.
 
-- The market-risk analysis uses approximately six months of daily observations.
-- The credit-risk model uses a sample of only 500 customers.
-- The credit dataset represents Taiwanese customers from 2005, not Indian borrowers.
-- The credit model has limited default recall and is for educational purposes only.
-- Historical risk estimates do not guarantee future market outcomes.
+## 06. Running the Project
 
-## Purpose
+Clone the repository:
 
-This project was developed to build practical familiarity with financial data analysis, statistical risk measurement and introductory credit-risk modelling using Python.
+```bash
+git clone https://github.com/arpitasinhmar-svg/QuantRisk-Analytics.git
+cd QuantRisk-Analytics
+```
+
+Install the required libraries:
+
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn statsmodels openpyxl xlrd jupyter
+```
+
+Launch Jupyter:
+
+```bash
+jupyter notebook
+```
+
+Run the notebooks in order:
+
+1. `01_market_data_analysis.ipynb`
+2. `02_credit_risk_analysis.ipynb`
+
+## 07. Limitations
+
+- The market-risk analysis covers approximately six months of NIFTY 50 observations. Its results should not be treated as long-term risk estimates.
+- The credit-risk model uses a sample of 500 observations from a historical Taiwanese dataset dating back to 2005.
+- The model uses a limited set of explanatory variables and has relatively low default recall.
+- Neither analysis is intended for live trading, lending decisions or production risk management.
+
+## Project Purpose
+
+This project was developed to build practical experience in quantitative finance, statistical analysis and financial risk modelling.
+
+It focuses on understanding how financial data can be translated into interpretable risk measures and model outputs, while recognising the limitations of simplified analytical approaches.
+
+---
+
+**QuantRisk Analytics | Financial Risk Analysis Using Python**
